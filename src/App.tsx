@@ -1,21 +1,69 @@
-import React from 'react';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import './utils/_fonts.scss';
 import './App.scss';
+import { HomePage } from './modules/HomePage';
+import { FavoritesPage } from './modules/FavoritesPage';
+import { CartPage } from './modules/CartPage';
+import { NotFoundPage } from './modules/NotFoundPage';
+import { CategoryPage } from './modules/CategoryPage';
+import { ProductDetailsPage } from './modules/CategoryPage/ProductDetailsPage';
+import { ProductsProvider } from './context/ProductsContext';
+import { FilterProvider } from './context/FilterContext';
+import { Layout } from './modules/shared/Layout';
+import { BurgerMenu } from './modules/shared/Header/BurgerMenu';
+import { ScrollToTop } from './services/ScrollToTop';
+import { ThemeProvider } from './theme/ThemeProvider';
 
-interface Props {
-  onClick: () => void;
-  children: React.ReactNode;
-}
-
-export const Provider: React.FC<Props> = React.memo(({ onClick, children }) => (
-  <button type="button" onClick={onClick}>
-    {children}
-  </button>
-));
-
-export const App: React.FC = () => {
+export const App = () => {
   return (
-    <div className="starter">
-      <Provider onClick={() => ({})}>TodoList</Provider>
-    </div>
+    <ThemeProvider>
+      <ProductsProvider>
+        <FilterProvider>
+          <div className="App">
+            <ScrollToTop />
+            <Routes>
+              <Route element={<Layout />}>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/home" element={<Navigate to="/" replace />} />
+                <Route path="/burgermenu" element={<BurgerMenu />} />
+
+                <Route
+                  path="/phones"
+                  element={
+                    <CategoryPage category="phones" title="Mobile phones" />
+                  }
+                />
+
+                <Route
+                  path="/tablets"
+                  element={<CategoryPage category="tablets" title="Tablets" />}
+                />
+
+                <Route
+                  path="/accessories"
+                  element={
+                    <CategoryPage category="accessories" title="Accessories" />
+                  }
+                />
+
+                <Route
+                  path="/:category/product/:productId"
+                  element={<ProductDetailsPage />}
+                />
+
+                <Route
+                  path="/favorites"
+                  element={<Navigate to="/favourites" replace />}
+                />
+                <Route path="/favourites" element={<FavoritesPage />} />
+                <Route path="/cart" element={<CartPage />} />
+
+                <Route path="*" element={<NotFoundPage />} />
+              </Route>
+            </Routes>
+          </div>
+        </FilterProvider>
+      </ProductsProvider>
+    </ThemeProvider>
   );
 };
