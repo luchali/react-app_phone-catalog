@@ -38,6 +38,15 @@ export const ProductDetailsPage: React.FC = () => {
     productId: string;
   }>();
 
+  const pageTopRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    pageTopRef.current?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    });
+  }, [productId]);
+
   const findProductById = (id: string): FullProduct | null => {
     const summary = apiProducts.find(
       product => String(product.id) === id || product.itemId === id,
@@ -176,7 +185,9 @@ export const ProductDetailsPage: React.FC = () => {
   };
 
   return (
-    <div className={styles.productdetailspage_container}>
+    <div ref={pageTopRef}
+      className={styles.productdetailspage_container}
+    >
       {product ? (
         <div className={styles.productdetailspage}>
           <Breadcrumbs category={category || ''} productId={productId || ''} />

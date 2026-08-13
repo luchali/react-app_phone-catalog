@@ -3,6 +3,7 @@ import { ProductCard, SkeletonProductCard } from '../../../shared/ProductCard';
 import apiProducts from '../../../../../public/api/products.json';
 import styles from './ProductsSlider.module.scss';
 import { useMemo, useState, useEffect, useRef } from 'react';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { useNavigate } from 'react-router';
 
 const imagesChevron = '/react-app_phone-catalog/img/icons/';

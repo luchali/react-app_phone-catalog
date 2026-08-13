@@ -1,0 +1,35 @@
+@use '../../utils/vars' as *;
+@use '../../utils/mixins' as *;
+
+.contacts {
+  min-height: 70vh;
+  padding-block: 40px;
+
+  @include page-grid;
+
+  &__title {
+    grid-column: 1 / -1;
+    margin-bottom: 32px;
+
+    font-size: 32px;
+    font-weight: 800;
+    color: $primary-color;
+  }
+
+  &__content {
+    grid-column: 1 / -1;
+
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    a {
+      color: $secondary-color;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}

@@ -13,6 +13,7 @@ import { Layout } from './modules/shared/Layout';
 import { BurgerMenu } from './modules/shared/Header/BurgerMenu';
 import { ScrollToTop } from './services/ScrollToTop';
 import { ThemeProvider } from './theme/ThemeProvider';
+import { ContactsPage } from './modules/ContactsPage';
 
 export const App = () => {
   return (
@@ -57,6 +58,7 @@ export const App = () => {
                 />
                 <Route path="/favourites" element={<FavoritesPage />} />
                 <Route path="/cart" element={<CartPage />} />
+                <Route path="/contacts" element={<ContactsPage />} />
 
                 <Route path="*" element={<NotFoundPage />} />
               </Route>

@@ -47,6 +47,7 @@ export const Breadcrumbs: React.FC<{
           <li className={styles.breadcrumbs__item}>
             <img
               className={styles.breadcrumbs__icon}
+              // eslint-disable-next-line max-len
               src="/react-app_phone-catalog/img/icons/icon-chevron-arrow-right.png"
               alt=""
             />
